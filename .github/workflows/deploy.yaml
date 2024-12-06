@@ -34,10 +34,7 @@ jobs:
           cp target/EmailSenderLambda-1.0-SNAPSHOT.jar build/lambda_function.jar
 
       - name: Deploy Lambda Function
-        uses: aws-actions/aws-cli-action@v2
-        with:
-          aws-region: us-east-1
-          args: >
-            lambda update-function-code
-            --function-name arn:aws:lambda:us-east-1:904233093704:function:SiteContactEmail
+        run: |
+          aws lambda update-function-code \
+            --function-name arn:aws:lambda:us-east-1:904233093704:function:SiteContactEmail \
             --zip-file fileb://build/lambda_function.jar
